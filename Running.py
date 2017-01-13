@@ -9,13 +9,11 @@ From those files, the code is compiled and ran to form the game.
 import pygame
 from pygame.sprite import Group
 
-# Secondary Imports
+import gf as gf
+from Aliens import Alien
 from Settings import Settings
 from Spaceship import Ship
-from Aliens import Alien
 
-# Tertiary Imports
-import gf as gf
 
 # run_game function
 def run_game():
@@ -56,4 +54,13 @@ def run_game():
 
 run_game()
 
+<<<<<<< HEAD
 """ TEST """
+=======
+"""
+This is a test to make sure that the Github version syncs with all Computers
+
+99999999
+
+"""
+>>>>>>> origin/master
