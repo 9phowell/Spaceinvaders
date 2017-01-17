@@ -149,4 +149,3 @@ def update_aliens(ai_settings, aliens):
     """Update the positions of all of the aliens in the fleet"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
-
