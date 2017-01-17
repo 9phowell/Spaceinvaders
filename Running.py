@@ -53,14 +53,3 @@ def run_game():
 
 
 run_game()
-
-<<<<<<< HEAD
-""" TEST """
-=======
-"""
-This is a test to make sure that the Github version syncs with all Computers
-
-99999999
-
-"""
->>>>>>> origin/master
