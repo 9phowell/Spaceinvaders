@@ -52,11 +52,7 @@ def run_game():
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
-run_game()
 
 """
-This is a test to make sure that the Github version syncs with all Computers
-
-99999999
-
+Test after success 2
 """
