@@ -78,7 +78,7 @@ def fire_bullets(ai_settings, screen, ship, bullets):
         bullets.add(new_bullet)
 
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
     """Update the position of the bullets and get rd of old bullets"""
 
     # Update the position
@@ -88,6 +88,10 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+    # Check for any bullets that have hit aliens
+    # If so, get red of the bullet and the alien
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 """ PART III - ALIENS """
 def get_number_aliens_x(ai_settings, alien_width):
@@ -147,4 +151,3 @@ def update_aliens(ai_settings, aliens):
     update the position of all aliens in the fleet"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
-
