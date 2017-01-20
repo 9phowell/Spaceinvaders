@@ -5,6 +5,7 @@ import sys
 import pygame
 
 from Aliens import Alien
+from Spaceship import Ship
 from bullet import Bullet
 
 """ PART I - EVENTS AND SCREEN"""
@@ -159,3 +160,7 @@ def update_aliens(ai_settings, aliens):
     update the position of all aliens in the fleet"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
+
+    # Look for alien-ship collisions
+    if pygame.sprite.spritecollideany(Ship, aliens):
+        print("Ship Hit!")
