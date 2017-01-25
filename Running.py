@@ -26,6 +26,7 @@ def run_game():
     pygame.display.set_caption("Space Invaders")
 
     # creates an instance to store game statistics
+    stats = GameStats(ai_settings)
     """
     This part makes a ship, a group of bullets, and a group of aliens
     """
