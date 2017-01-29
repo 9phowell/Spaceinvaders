@@ -12,6 +12,7 @@ from pygame.sprite import Group
 import gf as gf
 from Aliens import Alien
 from Settings import Settings
+from Gamestats import GameStats
 from Spaceship import Ship
 
 
@@ -24,6 +25,8 @@ def run_game():
         (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Space Invaders")
 
+    # creates an instance to store game statistics
+    stats = GameStats(ai_settings)
     """
     This part makes a ship, a group of bullets, and a group of aliens
     """
@@ -48,7 +51,7 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, aliens, bullets)
         ship.update()
         gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        gf.update_aliens(ai_settings, aliens)
+        gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 

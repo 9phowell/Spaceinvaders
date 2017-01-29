@@ -1,14 +1,30 @@
 
 # Primary Imports
 import sys
-
+from time import sleep
 import pygame
 
 from Aliens import Alien
-from Spaceship import Ship
 from bullet import Bullet
 
 """ PART I - EVENTS AND SCREEN"""
+def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+    """respond to the ship being hit by an alien."""
+    # decrement ships left.
+    stats.ships_left -= 1
+
+    # empty the list of aliens and bullets.
+    aliens.empty()
+    bullets.empty()
+
+    # create a new fleet and center the ship.
+    create_fleet(ai_settings, screen, ship, aliens)
+    ship.center_ship()
+
+    # pause
+    sleep(.5)
+
+
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
     """Respond to key presses."""
     if event.key == pygame.K_RIGHT:
@@ -155,12 +171,24 @@ def change_fleet_direction(ai_settings, aliens):
         alien.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
 
-def update_aliens(ai_settings, aliens):
+def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+    """Check if any aliens have reached the bottom of the screen."""
+    screen_rect = screen.get_rect()
+    for aliens in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            # Treat this the same as if the ship got hit.
+            ship.hit(ai_settings, stats, screen, ship, aliens, bullets)
+            break
+
+def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     """Check if the fleet is at an edge, then
     update the position of all aliens in the fleet"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
 
-    # Look for alien-ship collisions
-    if pygame.sprite.spritecollideany(Ship, aliens):
-        print("Ship Hit!")
+    # look for alien-ship collisions
+    if pygame.sprite.spritecollideany(ship, aliens):
+        ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+
+    #look for any alirns hitting the bottom of the screen.
+    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
