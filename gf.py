@@ -2,6 +2,7 @@
 # Primary Imports
 import sys
 from time import sleep
+
 import pygame
 
 from Aliens import Alien
@@ -20,7 +21,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
         # create a new fleet and center the ship.
         create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship()
+        ship.center_ship_x()
 
         # pause
         sleep(.5)
