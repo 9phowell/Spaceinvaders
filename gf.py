@@ -21,8 +21,6 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
         # create a new fleet and center the ship.
         create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship_x()
-        ship.center_ship_y()
 
         # pause
         sleep(.5)
@@ -167,6 +165,9 @@ def create_fleet(ai_settings, screen, ship, aliens):
         for alien_number in range(number_aliens_x):
             create_alien(ai_settings, screen, aliens, alien_number,
                          row_number)
+
+    ship.center_ship_x()
+    ship.center_ship_y()
 
 
 def check_fleet_edges(ai_settings, aliens):
