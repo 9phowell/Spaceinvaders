@@ -6,13 +6,16 @@ seen in the import section, gets all of it's information from other files.
 From those files, the code is compiled and ran to form the game.
 """
 # Primary Imports
+import sys
+
 import pygame
 from pygame.sprite import Group
 
 import gf as gf
 from Aliens import Alien
-from Settings import Settings
+from Endgame import endscreen as es
 from Gamestats import GameStats
+from Settings import Settings
 from Spaceship import Ship
 
 
@@ -54,6 +57,9 @@ def run_game():
             ship.update()
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+        else:
+            sys.exit()
+            es.update()
 
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
