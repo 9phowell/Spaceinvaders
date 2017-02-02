@@ -13,6 +13,7 @@ from pygame.sprite import Group
 
 import gf as gf
 from Aliens import Alien
+from Endgame import Endscreen as es
 from Gamestats import GameStats
 from Settings import Settings
 from Spaceship import Ship
@@ -57,23 +58,12 @@ def run_game():
     while True:
         gf.check_events(ai_settings, screen, ship, aliens, bullets)
 
-        if stats.game_active:
+        if stats.game_active == True:
             ship.update()
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         else:
-            def placeholder():
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.type == pygame.QUIT:
-                            sys.exit()
-
-                        elif event.type == pygame.K_r:
-                            restart()
-
-                        elif event.type == pygame.K_SPACE:
-                            restart()
-            placeholder()
+            es.bltme()
 
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 

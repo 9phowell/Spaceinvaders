@@ -28,7 +28,6 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     else:
         stats.game_active = False
 
-
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
     """Respond to key presses."""
     if event.key == pygame.K_RIGHT:
