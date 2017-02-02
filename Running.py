@@ -13,7 +13,6 @@ from pygame.sprite import Group
 
 import gf as gf
 from Aliens import Alien
-from Endgame import endscreen as es
 from Gamestats import GameStats
 from Settings import Settings
 from Spaceship import Ship
@@ -50,6 +49,11 @@ def run_game():
     This is the main code that is to happen over and over again until the
     game finishes
     """
+
+    def restart():
+        # This is to be determined later, for now we will just have it exit the program
+        sys.exit()
+
     while True:
         gf.check_events(ai_settings, screen, ship, aliens, bullets)
 
@@ -58,8 +62,18 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         else:
-            sys.exit()
-            es.update()
+            def placeholder():
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN:
+                        if event.type == pygame.QUIT:
+                            sys.exit()
+
+                        elif event.type == pygame.K_r:
+                            restart()
+
+                        elif event.type == pygame.K_SPACE:
+                            restart()
+            placeholder()
 
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
