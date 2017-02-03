@@ -13,6 +13,7 @@ from pygame.sprite import Group
 
 import gf as gf
 from Aliens import Alien
+from Button import Button
 from Endgame import Endscreen as es
 from Gamestats import GameStats
 from Settings import Settings
@@ -27,6 +28,9 @@ def run_game():
     screen = pygame.display.set_mode(
         (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Space Invaders")
+
+    # Make a play button
+    play_button = Button(ai_settings, screen, "Play")
 
     # creates an instance to store game statistics
     stats = GameStats(ai_settings)
@@ -65,7 +69,7 @@ def run_game():
         else:
             es.bltme()
 
-        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
 
 run_game()
