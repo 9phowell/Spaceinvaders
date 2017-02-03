@@ -20,7 +20,7 @@ class Settings():
         self.ship_limit = 2
 
         # Bullet settings
-        self.bullet_speed_factor = 3
+        self.bullet_speed_factor = 1.5
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = random.choice(color)
