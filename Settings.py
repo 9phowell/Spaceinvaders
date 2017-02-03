@@ -4,7 +4,7 @@ Note that each large variable has it's own file.
 """
 
 import random
-color = [(220, 20, 60), (155, 48, 255), (0, 0, 255), (30, 144, 255)]
+color = [(220, 20, 60), (155, 48, 255), (0, 0, 255), (30, 144, 255), (0, 201, 87), (0, 255, 0), (255, 255, 0),(255, 165, 0), (255, 0, 0), (255,255,255), (145,145,145)]
 
 
 class Settings():
@@ -16,18 +16,18 @@ class Settings():
         self.bg_color = (0, 0, 0)
 
         # Ship Settings
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 5
         self.ship_limit = 2
 
         # Bullet settings
-        self.bullet_speed_factor = 3
-        self.bullet_width = 3
-        self.bullet_height = 15
+        self.bullet_speed_factor = 15
+        self.bullet_width = 15
+        self.bullet_height = 30
         self.bullet_color = random.choice(color)
-        self.bullets_allowed = 5
+        self.bullets_allowed = 10
 
         # Alien settings
-        self.alien_speed_factor = 1
+        self.alien_speed_factor = 5
         self.fleet_drop_speed = 10
         # 1 means right, -1 means left
         self.fleet_direction = 1
