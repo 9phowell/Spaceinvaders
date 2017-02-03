@@ -1,12 +1,21 @@
 
 import pygame
 
+class Endscreen():
+    def __init__(self, ai_settings, screen):
+        """Initialize the ship and set its starting position."""
+        self.screen = screen
+        self.ai_settings = ai_settings
 
-class endscreen():
+        # Load the ship image and get its rect.
+        self.image = pygame.image.load('img/G_O_Screen.png')
+        self.rect = self.image.get_rect()
+        self.screen_rect = screen.get_rect()
 
-    """
-    This class creates a new window with the game over screen printed on it.
-    """
-    def update(self):
-        screen = pygame.display.set_mode(800, 1)
-        pygame.display.set_caption("Game Over")
+        # Display the endscreen in the center of the screen
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.centery = self.screen_rect.centery
+
+    def bltme(self):
+        """Draws the endscreen"""
+        self.screen.blit(self.image, self.rect)
