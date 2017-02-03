@@ -14,7 +14,6 @@ from pygame.sprite import Group
 import gf as gf
 from Aliens import Alien
 from Button import Button
-from Endgame import Endscreen as es
 from Gamestats import GameStats
 from Settings import Settings
 from Spaceship import Ship
@@ -66,8 +65,6 @@ def run_game():
             ship.update()
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
-        else:
-            es.bltme()
 
         gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
