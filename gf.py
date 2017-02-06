@@ -228,6 +228,7 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
 
 """ PART VI - OMNISCIENT CONSTANTS"""
 
+
 def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen."""
     # Redraw the screen during each pass through the loop.
