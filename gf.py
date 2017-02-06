@@ -8,7 +8,9 @@ import pygame
 from Aliens import Alien
 from bullet import Bullet
 
-""" Part I - msc"""
+""" PART I - SHIP"""
+
+
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """respond to the ship being hit by an alien."""
     if stats.ships_left > 0:
@@ -28,6 +30,10 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     else:
         stats.game_active = False
         pygame.mouse.set_visible(True)
+
+
+""" PART II - CONTROLS"""
+
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
     """Respond to key presses."""
@@ -76,57 +82,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
             check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y)
 
 
-def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
-    """Start a new game when the player clicks on the play button"""
-    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_x)
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
-        # Hide the mouse cursor
-        pygame.mouse.set_visible(False)
-
-        # Reset the stats
-        stats.reset_stats()
-        stats.game_active = True
-
-        # Empty the list of aliens and bullets
-        aliens.empty()
-        bullets.empty()
-
-        # Create a new fleet and center the ship
-        create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship_y
-        ship.center_ship_x
-
-
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
-    """Update images on the screen and flip to the new screen."""
-    # Redraw the screen during each pass through the loop.
-    screen.fill(ai_settings.bg_color)
-
-    # Redraw all bullets behind ship and aliens.
-    for bullet in bullets.sprites():
-        bullet.draw_bullet()
-
-    # Draw the objects
-    ship.blitme()
-    aliens.draw(screen)
-
-    # Draw The Play button if the game is inactive
-    if not stats.game_active:
-        play_button.draw_button()
-
-    # Make the most recently drawn screen visible.
-    pygame.display.flip()
-
-
-""" PART II - Hostiles"""
-
-
-def fire_bullets(ai_settings, screen, ship, bullets):
-    """Fire a bullet if the limit is not reached yet"""
-    if len(bullets) < ai_settings.bullets_allowed:
-        # Create a new bullet and add it to the bullets group.
-        new_bullet = Bullet(ai_settings, screen, ship)
-        bullets.add(new_bullet)
+""" PART III - BULLETS """
 
 
 def update_bullets(ai_settings, screen, ship, aliens, bullets):
@@ -153,7 +109,40 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
 
-""" PART III - ALIENS """
+
+def fire_bullets(ai_settings, screen, ship, bullets):
+    """Fire a bullet if the limit is not reached yet"""
+    if len(bullets) < ai_settings.bullets_allowed:
+        # Create a new bullet and add it to the bullets group.
+        new_bullet = Bullet(ai_settings, screen, ship)
+        bullets.add(new_bullet)
+
+
+""" PART IV MSC VARIABLES"""
+
+
+def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
+    """Start a new game when the player clicks on the play button"""
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_x)
+    if play_button.rect.collidepoint(mouse_x, mouse_y):
+        # Hide the mouse cursor
+        pygame.mouse.set_visible(False)
+
+        # Reset the stats
+        stats.reset_stats()
+        stats.game_active = True
+
+        # Empty the list of aliens and bullets
+        aliens.empty()
+        bullets.empty()
+
+        # Create a new fleet and center the ship
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship_y
+        ship.center_ship_x
+
+
+""" PART V - ALIENS """
 
 
 def get_number_aliens_x(ai_settings, alien_width):
@@ -235,3 +224,28 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
 
     # Look for any aliens hitting the bottom of the screen.
     check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
+
+
+""" PART VI - OMNISCIENT CONSTANTS"""
+
+def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
+    """Update images on the screen and flip to the new screen."""
+    # Redraw the screen during each pass through the loop.
+    screen.fill(ai_settings.bg_color)
+
+    # Redraw all bullets behind ship and aliens.
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
+
+    # Draw the objects
+    ship.blitme()
+    aliens.draw(screen)
+
+    # Draw The Play button if the game is inactive
+    if not stats.game_active:
+        play_button.draw_button()
+
+    # Make the most recently drawn screen visible.
+    pygame.display.flip()
+
+# End Comment
