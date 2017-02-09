@@ -15,9 +15,9 @@ import gf as gf
 from Aliens import Alien
 from Button import Button
 from Gamestats import GameStats
-from scoreboard import Scoreboard
 from Settings import Settings
 from Spaceship import Ship
+from scoreboard import Scoreboard
 
 
 # run_game function
@@ -73,4 +73,6 @@ def run_game():
 
 run_game()
 
-# End
+# Add a numeral to the end comments to force upload the current version if necessary
+
+# End I
