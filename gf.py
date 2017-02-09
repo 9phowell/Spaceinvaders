@@ -243,7 +243,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
     aliens.draw(screen)
 
     # Draw the score information
-    sb.show_score
+    sb.show_score()
 
     # Draw The Play button if the game is inactive
     if not stats.game_active:
