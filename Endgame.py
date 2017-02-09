@@ -19,3 +19,5 @@ class Endscreen():
     def bltme(self):
         """Draws the endscreen"""
         self.screen.blit(self.image, self.rect)
+
+# End

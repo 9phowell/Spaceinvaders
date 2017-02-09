@@ -31,3 +31,5 @@ class Scoreboard():
     def show_score(self):
         """Draw score to the screen."""
         self.screen.blit(self.score_image, self.score_rect)
+
+        # End

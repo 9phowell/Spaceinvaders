@@ -253,4 +253,4 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button
     # Make the most recently drawn screen visible.
     pygame.display.flip()
 
-# End Comment
+# End
