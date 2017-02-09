@@ -22,7 +22,7 @@ class Scoreboard():
         """Turn the score into a rendered image."""
         score_str = str(self.stats.score)
 
-        color = 60,60,60
+        color = 255, 0, 0
         self.score_image = self.font.render(score_str, True, color, self.ai_settings.bg_color)
 
         # Displays the score at the bottom right of the screen.
