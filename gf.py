@@ -141,6 +141,8 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         ship.center_ship_y
         ship.center_ship_x
 
+        ai_settings.initialize_dynamic_settings()
+
 
 """ PART V - ALIENS """
 
@@ -186,6 +188,8 @@ def create_fleet(ai_settings, screen, ship, aliens):
 
     ship.center_ship_x()
     ship.center_ship_y()
+
+    ai_settings.increase_speed()
 
 
 def check_fleet_edges(ai_settings, aliens):
