@@ -85,7 +85,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 """ PART III - BULLETS """
 
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Update the position of the bullets and get rd of old bullets"""
 
     # Update the position
@@ -96,10 +96,10 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets):
     # Check for any bullets that have hit aliens
     # If so, get rid of the bullet and the alien
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
@@ -108,6 +108,12 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
         # Destroy existing bullets and create a new fleet
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
+
+    if collisions:
+        for aliens in collisions.values():
+            stats.score += ai_settings.alien_points * len(aliens)
+            sb.prep_score()
+        check_high_score(stats, sb)
 
 
 def fire_bullets(ai_settings, screen, ship, bullets):
@@ -138,11 +144,17 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
 
         # Create a new fleet and center the ship
         create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship_y
-        ship.center_ship_x
+        ship.center_ship_y()
+        ship.center_ship_x()
 
         ai_settings.initialize_dynamic_settings()
 
+
+def check_high_score(stats, sb):
+    """Check to see  if there is a new high score"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()
 
 """ PART V - ALIENS """
 

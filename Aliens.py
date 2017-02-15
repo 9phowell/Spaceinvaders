@@ -40,4 +40,4 @@ class Alien(Sprite):
         """Draw the alien at its current location."""
         self.screen.blit(self.image, self.rect)
 
-# End
+# End II
