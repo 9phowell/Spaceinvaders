@@ -68,7 +68,7 @@ def check_keyup_events(event, ai_settings, screen, ship, bullets):
         sys.exit()
 
 
-def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets):
+def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets):
     """Respond to key-presses and mouse events."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -79,7 +79,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
             check_keyup_events(event, ai_settings, screen, ship, bullets)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets, mouse_x, mouse_y)
 
 
 """ PART III - BULLETS """
@@ -107,7 +107,14 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
     if len(aliens) == 0:
         # Destroy existing bullets and create a new fleet
         bullets.empty()
+        ai_settings.increase_speed
+
+        # increase level.
+        stats.level += 1
+        sb.prep_level()
+
         create_fleet(ai_settings, screen, ship, aliens)
+
 
     if collisions:
         for aliens in collisions.values():
@@ -127,7 +134,7 @@ def fire_bullets(ai_settings, screen, ship, bullets):
 """ PART IV MSC VARIABLES"""
 
 
-def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Start a new game when the player clicks on the play button"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_x)
     if play_button.rect.collidepoint(mouse_x, mouse_y):
@@ -137,6 +144,11 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         # Reset the stats
         stats.reset_stats()
         stats.game_active = True
+
+        # reset the scoreboard images.
+        sb.prep_score()
+        sb.prep_high_score()
+        sb.prep_level()
 
         # Empty the list of aliens and bullets
         aliens.empty()
@@ -268,4 +280,4 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
     # Make the most recently drawn screen visible.
     pygame.display.flip()
 
-# End I
+# End III

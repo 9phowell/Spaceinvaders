@@ -61,7 +61,7 @@ def run_game():
         sys.exit()
 
     while True:
-        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
+        gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
 
         if stats.game_active == True:
             ship.update()
@@ -75,4 +75,4 @@ run_game()
 
 # Add a numeral to the end comments to force upload the current version if necessary
 
-# End I
+# End III
