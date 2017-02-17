@@ -21,6 +21,11 @@ class Scoreboard():
         # Prepare the high score
         self.prep_high_score()
 
+        # Prepare the Level Counter
+        self.prep_lives(ai_settings)
+
+    """ Prepping """
+
     def prep_score(self):
         """Turn the score into a rendered image."""
         rounded_score = int(round(self.stats.score, -1))
@@ -48,6 +53,31 @@ class Scoreboard():
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
 
+    def prep_level(self):
+        color = 255, 0, 0
+        """Turn the level into a rendered image."""
+        self.level_image = self.font.render(str(self.stats.level), True, color, self.ai_settings.bg_color)
+
+        # Position the level below the score.
+        self.level_rect = self.level_image.get_rect()
+        self.level_rect.right = self.score_rect.bottom + 10
+
+    def prep_lives(self, ai_settings):
+        # Lives are should be equivalent to ships_allowed in ship settings
+        self.lives = ai_settings.ship_lives
+
+        # Creating the image
+        self.lives_image = self.font.render(str(self.lives), True, (250, 0, 0), self.ai_settings.bg_color)
+
+        # Getting the Rectangle
+        self.lives_rect = self.lives_image.get_rect()
+
+        # Positioning
+        self.lives_rect.left = self.screen_rect.left
+        self.lives_rect.top = self.score_rect.top + 15
+
+    """ Scores """
+
     def show_score(self):
         """ Python wanted this here."""
         color = 255, 0, 0
@@ -58,15 +88,7 @@ class Scoreboard():
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
-
-    def prep_level(self):
-        color = 255, 0, 0
-        """Turn the level into a rendered image."""
-        self.level_image = self.font.render(str(self.stats.level), True, color, self.ai_settings.bg_color)
-
-        # Position the level below the score.
-        self.level_rect = self.level_image.get_rect()
-        self.level_rect.right = self.score_rect.bottom + 10
+        self.screen.blit(self.lives_image, self.lives_rect)
 
 
         # End III

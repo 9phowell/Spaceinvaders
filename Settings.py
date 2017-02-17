@@ -52,6 +52,7 @@ class Settings():
 
         # Scoring
         self.alien_points = 50
+        self.ship_lives = self.ship_limit
 
     def increase_speed(self):
         """Increase the speed and alien point values"""
