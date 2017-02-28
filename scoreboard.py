@@ -1,7 +1,13 @@
 import pygame.font
 
+import Gamestats
+
+
 class Scoreboard():
     """A class to report scoring information"""
+
+    # A variable to shorten Gamestats
+    stats = Gamestats
 
     def __init__(self, ai_settings, screen, stats):
         """Initialize scorekeeping attributes"""
@@ -21,7 +27,7 @@ class Scoreboard():
         self.prep_high_score()
 
         # Prepare the Level Counter
-        self.prep_lives(ai_settings)
+        self.prep_lives(ai_settings, stats)
 
     """ Prepping """
 
@@ -61,12 +67,11 @@ class Scoreboard():
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.bottom + 10
 
-    def prep_lives(self, ai_settings):
+    def prep_lives(self, ai_settings, stats):
         # Lives are should be equivalent to ships_allowed in ship settings
-        self.lives = ai_settings.ship_lives
 
         # Creating the image
-        self.lives_image = self.font.render(str(self.lives), True, (250, 0, 0), self.ai_settings.bg_color)
+        self.lives_image = self.font.render(str(stats.ships_left), True, (250, 0, 0), self.ai_settings.bg_color)
 
         # Getting the Rectangle
         self.lives_rect = self.lives_image.get_rect()
@@ -89,5 +94,4 @@ class Scoreboard():
         self.screen.blit(self.level_image, self.level_rect)
         self.screen.blit(self.lives_image, self.lives_rect)
 
-
-        # End III
+        # End VI

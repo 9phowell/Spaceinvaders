@@ -5,8 +5,8 @@ This is the main running file for the Space Invaders game. This file, as
 seen in the import section, gets all of it's information from other files.
 From those files, the code is compiled and ran to form the game.
 """
+
 # Primary Imports
-import sys
 
 import pygame
 from pygame.sprite import Group
@@ -56,18 +56,13 @@ def run_game():
     game finishes
     """
 
-    def restart():
-        # This is to be determined later, for now we will just have it exit the program
-        sys.exit()
-
     while True:
-        gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets, sb)
 
-        if stats.game_active == True:
+        if stats.game_active:
             ship.update()
             gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
-            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
-            print(str(ai_settings.ship_lives))
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets, sb)
 
         gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
@@ -76,4 +71,4 @@ run_game()
 
 # Add a numeral to the end comments to force upload the current version if necessary
 
-# End II
+# End VI
