@@ -25,7 +25,6 @@ class Ship():
         self.moving_down = False
 
 
-
     def update(self):
         """Update the ship's position based on the movement flag."""
         """Update the ship's position based on movement flags."""
