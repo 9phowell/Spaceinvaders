@@ -10,6 +10,7 @@ from bullet import Bullet
 
 """ PART I - SHIP"""
 
+
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """respond to the ship being hit by an alien."""
     if stats.ships_left > 0:
@@ -159,12 +160,6 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens,
         ship.center_ship_x()
 
         ai_settings.initialize_dynamic_settings()
-
-
-def update_lives(ai_settings, stats, screen, ship, aliens, bullets):
-    if ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
-        ai_settings.ship_lives -= 1
-        return ai_settings.ship_lives
 
 
 def check_high_score(stats, sb):
