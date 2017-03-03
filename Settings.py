@@ -17,7 +17,7 @@ class Settings():
         self.bg_color = (0, 0, 0)
 
         # Ship Settings
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 1.2
         self.ship_limit = 3
 
         # Bullet settings
@@ -26,6 +26,7 @@ class Settings():
         self.bullet_height = 15
         self.bullet_color = random.choice(color)
         self.bullets_allowed = 5
+        self.bullet_speedup_rounds_skip_count = 5
 
         # Alien settings
         self.alien_speed_factor = 3
@@ -56,8 +57,19 @@ class Settings():
     def increase_speed(self):
         """Increase the speed and alien point values"""
         self.ship_speed_factor *= self.speedup_scale
-        self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
+
+        # Speeding up the bullets
+        self.limit = 0
+        self.levcount = 0
+        if self.limit <= self.bullet_speedup_rounds_skip_count:
+            self.alien_speed_factor *= self.speedup_scale
+            self.limit += 1
+            self.levcount += 1
+            if self.levcount >= 3:
+                self.levcount = 0
+                self.limit = 0
+                return self.levcount, self.limit
 
         # Point value increase
         self.alien_points = int(self.alien_points * self.score_scale)
