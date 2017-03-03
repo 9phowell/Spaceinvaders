@@ -3,11 +3,11 @@ INCOMPLETE - Spaceinvaders Clone
 
 You are going to want to run the "Running.py" file to run the game.
 
-REQUIREMENTS:
+**REQUIREMENTS:
 Python 3.5 or later
-Pygame
+Pygame**
 
-TO INSTALL THE REQUIREMENTS ON WINDOWS:
+_TO INSTALL THE REQUIREMENTS ON WINDOWS:_
 
  1: copy this link with Ctrl + C: https://www.python.org/ftp/python/3.6.0/python-3.6.0-amd64.exe
  2: press the windows button
