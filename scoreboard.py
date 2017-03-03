@@ -94,4 +94,4 @@ class Scoreboard():
         self.screen.blit(self.level_image, self.level_rect)
         self.screen.blit(self.lives_image, self.lives_rect)
 
-        # End VI
+        # End VII

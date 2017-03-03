@@ -55,4 +55,4 @@ class Ship():
         self.rect.centery = self.center
         self.center = self .screen_rect.centery
 
-        # End VI
+        # End VII

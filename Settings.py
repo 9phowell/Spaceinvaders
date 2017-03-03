@@ -62,4 +62,4 @@ class Settings():
         # Point value increase
         self.alien_points = int(self.alien_points * self.score_scale)
 
-# End VI
+# End VII
