@@ -47,6 +47,7 @@ class Settings():
         self.bullet_speed_factor = 3
         self.alien_speed_factor = 1
         self.bullets_allowed = 5
+        self.dynamic_speedup_scale = 3
 
         # Fleet_directions of 1 represents right, -1 represents left'
         self.fleet_direction = -1
@@ -58,18 +59,9 @@ class Settings():
         """Increase the speed and alien point values"""
         self.ship_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
-
-        # Speeding up the bullets
-        self.limit = 0
-        self.levcount = 0
-        if self.limit <= self.bullet_speedup_rounds_skip_count:
-            self.alien_speed_factor *= self.speedup_scale
-            self.limit += 1
-            self.levcount += 1
-            if self.levcount >= 3:
-                self.levcount = 0
-                self.limit = 0
-                return self.levcount, self.limit
+        self.bullet_speed_factor = self.dynamic_speedup_scale
+        self.dynamic_speedup_scale *= 1.1
+        print(self.dynamic_speedup_scale)
 
         # Point value increase
         self.alien_points = int(self.alien_points * self.score_scale)
