@@ -32,7 +32,7 @@ class Settings():
         self.alien_speed_factor = 3
         self.fleet_drop_speed = 10
         # 1 means right, -1 means left
-        self.fleet_direction = 1
+        self.fleet_direction = -1
 
         # How quickly the game speeds up
         self.speedup_scale = 1.2
@@ -49,7 +49,7 @@ class Settings():
         self.bullets_allowed = 5
 
         # Fleet_directions of 1 represents right, -1 represents left'
-        self.fleet_direction = 1
+        self.fleet_direction = -1
 
         # Scoring
         self.alien_points = 50

@@ -37,7 +37,7 @@ class Scoreboard():
         score_str = '{:,}'.format((rounded_score))
 
         color = 255, 0, 0
-        self.score_image = self.font.render(score_str, True, color, self.ai_settings.bg_color)
+        self.score_image = self.font.render("Score: " + score_str, True, color, self.ai_settings.bg_color)
 
         # Displays the score at the bottom right of the screen.
         self.score_rect = self.score_image.get_rect()
@@ -51,7 +51,8 @@ class Scoreboard():
 
         color = 255, 0, 0
         # Create the image
-        self.high_score_image = self.font.render(high_score_str, True, color, self.ai_settings.bg_color)
+        self.high_score_image = self.font.render("High Score: " + high_score_str, True, color,
+                                                 self.ai_settings.bg_color)
 
         # Center the image (Make it visible on the screen)
         self.high_score_rect = self.high_score_image.get_rect()
@@ -71,7 +72,8 @@ class Scoreboard():
         # Lives are should be equivalent to ships_allowed in ship settings
 
         # Creating the image
-        self.lives_image = self.font.render(str(stats.ships_left), True, (250, 0, 0), self.ai_settings.bg_color)
+        self.lives_image = self.font.render("Lives: " + str(stats.ships_left), True, (250, 0, 0),
+                                            self.ai_settings.bg_color)
 
         # Getting the Rectangle
         self.lives_rect = self.lives_image.get_rect()
@@ -85,7 +87,7 @@ class Scoreboard():
     def show_score(self):
         """ Python wanted this here."""
         color = 255, 0, 0
-        self.level_image = self.font.render(str(self.stats.level), True, color, self.ai_settings.bg_color)
+        self.level_image = self.font.render("Level: " + str(self.stats.level), True, color, self.ai_settings.bg_color)
         self.level_rect = self.level_image.get_rect()
 
         """Draw score and ships to the screen."""
